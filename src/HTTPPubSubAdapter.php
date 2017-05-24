@@ -60,7 +60,6 @@ class HTTPPubSubAdapter implements PubSubAdapterInterface
     }
 
     /**
-     *
      * Return the uri of the service where messages will be published to.
      *
      * @return string
@@ -119,6 +118,7 @@ class HTTPPubSubAdapter implements PubSubAdapterInterface
      * @param string $endpoint
      * @param mixed $body
      * @param array $headers
+     *
      * @return Request
      */
     protected function createRequest($method, $endpoint, $body = null, array $headers = [])
@@ -132,12 +132,13 @@ class HTTPPubSubAdapter implements PubSubAdapterInterface
      * Send an HTTP request.
      *
      * @param RequestInterface $request
+     *
      * @return array
      */
     protected function sendRequest(RequestInterface $request)
     {
         $response = $this->client->send($request);
-        /** @var \Psr\Http\Message\ResponseInterface $response */
+        /* @var \Psr\Http\Message\ResponseInterface $response */
 
         return json_decode($response->getBody(), true);
     }
@@ -147,6 +148,7 @@ class HTTPPubSubAdapter implements PubSubAdapterInterface
      *
      * @param string $endpoint
      * @param array $data
+     *
      * @return mixed
      */
     public function post($endpoint, array $data = [])

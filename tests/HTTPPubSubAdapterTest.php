@@ -82,7 +82,7 @@ class HTTPPubSubAdapterTest extends TestCase
                 'POST',
                 'messages/test',
                 json_encode(['messages' => ['hello', 'world']]),
-                ['Content-Type' => 'application/json']
+                ['Content-Type' => 'application/json'],
             ])
             ->once()
             ->andReturn($request);
@@ -103,7 +103,7 @@ class HTTPPubSubAdapterTest extends TestCase
         $subscribeAdapter->shouldReceive('subscribe')
             ->withArgs([
                 'test',
-                $handler
+                $handler,
             ])
             ->once();
 
@@ -127,9 +127,9 @@ class HTTPPubSubAdapterTest extends TestCase
                     'messages' => [
                         [
                             'hello' => 'world',
-                        ]
+                        ],
                     ],
-                ]
+                ],
             ])
             ->once();
         $adapter->publish('test', ['hello' => 'world']);
@@ -151,16 +151,16 @@ class HTTPPubSubAdapterTest extends TestCase
                         'test',
                         [
                             'hello' => 'world',
-                        ]
+                        ],
                     ],
-                ]
+                ],
             ])
             ->once();
         $messages = [
             'test',
             [
                 'hello' => 'world',
-            ]
+            ],
         ];
         $adapter->publishBatch('test', $messages);
     }
